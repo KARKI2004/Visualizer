@@ -1,6 +1,6 @@
 # main.py
-from config import *
-from data_handler import *
+from CS340_Project.config import *
+from CS340_Project.data_handler import *
 from analytics import *
 
 def main():
