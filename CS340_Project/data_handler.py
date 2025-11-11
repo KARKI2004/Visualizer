@@ -1,20 +1,32 @@
-# data_handler.py
+#Version: v0.1
+#Date Last Updated: 11-10-2025
 
+'''
+Version: <v0.1>
+Description:
+< handles CSV data reading, processing, and visualizations>
+Authors:
+<Samiksha Gnawali, Suyog Karki>
+Date Created : <11/08/2025>
+Date Last Updated: <11/10/2025>
+'''
+
+#%% IMPORTS
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ===== Parent Class =====
+
 class DataVisualizer:
     """
     Parent class to store configurations and provide basic data visualization and querying.
     """
     def __init__(self, config=None):
-        # Optional config dictionary
+        
         self.config = config if config else {}
         self.data = None
 
-    # ----- Basic column visualization -----
+    
     def plot_histogram(self, column):
         """Plot histogram for a numeric column."""
         if self.data is not None and column in self.data.columns:
@@ -37,7 +49,7 @@ class DataVisualizer:
         else:
             print("Columns not found or no data loaded.")
 
-    # ----- Simple query -----
+    
     def query_simple(self, column, value):
         """Return rows where column equals value (simple condition)."""
         if self.data is not None and column in self.data.columns:
@@ -48,7 +60,6 @@ class DataVisualizer:
             return pd.DataFrame()
 
 
-# ===== Child Class =====
 class CSVDataProcessor(DataVisualizer):
     """
     Child class to read CSV, store dataframe, use configuration, and provide advanced visualization.
@@ -67,7 +78,7 @@ class CSVDataProcessor(DataVisualizer):
             print(f"Error loading data: {e}")
             self.data = None
 
-    # ----- Advanced Visualizations -----
+    
     def plot_violin(self, column):
         if self.data is not None and column in self.data.columns:
             plt.figure(figsize=(8, 5))
@@ -97,7 +108,7 @@ class CSVDataProcessor(DataVisualizer):
         else:
             print("Columns not found or no data loaded.")
 
-    # ----- Boolean indexing query -----
+    
     def query_boolean(self, conditions: dict):
         """
         Query multiple conditions.

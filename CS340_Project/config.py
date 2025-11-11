@@ -1,6 +1,20 @@
-# config.py
+#Version: v0.1
+#Date Last Updated: 11-10-2025
 
-# Configuration constants
+'''
+Version: <v0.1>
+Description:
+< configuration settings for file paths, figure size, and plot style>
+Authors:
+<Samiksha Gnawali, Suyog Karki>
+Date Created : <11/08/2025>
+Date Last Updated: <11/10/2025>
+'''
+
+#%% IMPORTS
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 CONFIG = {
     "BASE_DIR": r"c:\Users\samik\CMPS_3400_Project\CS340_Project",
     "DATA_FILE": r"c:\Users\samik\CMPS_3400_Project\CS340_Project\Input\car_data.csv",
@@ -16,9 +30,6 @@ def show_config():
     for key, value in CONFIG.items():
         print(f"{key}: {value}")
 
-# Set plot style globally
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-sns.set_style(CONFIG["PLOT_STYLE"])  # must be: white, dark, whitegrid, darkgrid, ticks
+sns.set_style(CONFIG["PLOT_STYLE"])  
 plt.rcParams["figure.figsize"] = CONFIG["FIG_SIZE"]
