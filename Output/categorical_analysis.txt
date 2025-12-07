@@ -1,0 +1,3 @@
+Unique values in Fuel_Type: ['Petrol' 'Diesel' 'CNG']
+2-permutations: [('Petrol', 'Diesel'), ('Petrol', 'CNG'), ('Diesel', 'Petrol'), ('Diesel', 'CNG'), ('CNG', 'Petrol')]
+2-combinations: [('Petrol', 'Diesel'), ('Petrol', 'CNG'), ('Diesel', 'CNG')]

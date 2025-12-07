@@ -1,5 +1,5 @@
 #Version: v0.1
-#Date Last Updated: 11-10-2025
+#Date Last Updated: 12-04-2025
 
 '''
 Version: <v0.1>
@@ -15,9 +15,13 @@ Date Last Updated: <11/10/2025>
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 CONFIG = {
-    "BASE_DIR": r"c:\Users\samik\CMPS_3400_Project\CS340_Project",
-    "DATA_FILE": r"c:\Users\samik\CMPS_3400_Project\CS340_Project\Input\car_data.csv",
+    "BASE_DIR": BASE_DIR,
+    "DATA_FILE": os.path.join(BASE_DIR, "Input", "car_data.pkl"),
     "PLOT_STYLE": "darkgrid",
     "FIG_SIZE": (10, 6),
     "TARGET_COLUMN": "Selling_Price"

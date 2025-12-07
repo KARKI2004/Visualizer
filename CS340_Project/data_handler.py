@@ -1,5 +1,5 @@
 #Version: v0.1
-#Date Last Updated: 11-10-2025
+#Date Last Updated: 12-04-2025
 
 '''
 Version: <v0.1>
@@ -8,13 +8,14 @@ Description:
 Authors:
 <Samiksha Gnawali, Suyog Karki>
 Date Created : <11/08/2025>
-Date Last Updated: <11/10/2025>
 '''
 
 #%% IMPORTS
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+
 
 
 class DataVisualizer:
@@ -128,3 +129,8 @@ class CSVDataProcessor(DataVisualizer):
             else:
                 print(f"Column '{col}' not found, skipping.")
         return df
+    def log(self, message):
+        """Append messages to a log file in Output folder."""
+        os.makedirs("Output", exist_ok=True)
+        with open("Output/log.txt", "a") as f:
+            f.write(message + "\n")
