@@ -23,34 +23,92 @@ class DataVisualizer:
     Parent class to store configurations and provide basic data visualization and querying.
     """
     def __init__(self, config=None):
-        
+
         self.config = config if config else {}
         self.data = None
 
-    
-    def plot_histogram(self, column):
+    def set_data(self, data):
+        """Set an in-memory DataFrame for plotting and queries."""
+        self.data = data
+
+    def _save_fig(self, fig, save_path):
+        if not save_path:
+            return
+        out_dir = os.path.dirname(save_path) or "."
+        os.makedirs(out_dir, exist_ok=True)
+        fig.savefig(save_path, bbox_inches="tight")
+
+    def plot_histogram(self, column, show=True, save_path=None):
         """Plot histogram for a numeric column."""
         if self.data is not None and column in self.data.columns:
-            plt.figure(figsize=(8, 5))
-            sns.histplot(self.data[column], kde=True)
-            plt.title(f'Histogram of {column}')
-            plt.show()
+            fig, ax = plt.subplots(figsize=(8, 5))
+            sns.histplot(self.data[column], kde=True, ax=ax)
+            ax.set_title(f'Histogram of {column}')
+            self._save_fig(fig, save_path)
+            if show:
+                plt.show()
+            return fig
         else:
             print(f"Column '{column}' not found or no data loaded.")
+            return None
 
-    def plot_line(self, x_column, y_column):
+    def plot_line(self, x_column, y_column, show=True, save_path=None):
         """Plot line graph for numeric data."""
         if self.data is not None and x_column in self.data.columns and y_column in self.data.columns:
-            plt.figure(figsize=(8, 5))
-            plt.plot(self.data[x_column], self.data[y_column], marker='o')
-            plt.xlabel(x_column)
-            plt.ylabel(y_column)
-            plt.title(f'Line plot: {y_column} vs {x_column}')
-            plt.show()
+            fig, ax = plt.subplots(figsize=(8, 5))
+            ax.plot(self.data[x_column], self.data[y_column], marker='o')
+            ax.set_xlabel(x_column)
+            ax.set_ylabel(y_column)
+            ax.set_title(f'Line plot: {y_column} vs {x_column}')
+            self._save_fig(fig, save_path)
+            if show:
+                plt.show()
+            return fig
         else:
             print("Columns not found or no data loaded.")
+            return None
 
-    
+    def plot_violin(self, column, show=True, save_path=None):
+        if self.data is not None and column in self.data.columns:
+            fig, ax = plt.subplots(figsize=(8, 5))
+            sns.violinplot(y=self.data[column], ax=ax)
+            ax.set_title(f'Violin plot of {column}')
+            self._save_fig(fig, save_path)
+            if show:
+                plt.show()
+            return fig
+        else:
+            print(f"Column '{column}' not found or no data loaded.")
+            return None
+
+    def plot_box(self, column, show=True, save_path=None):
+        if self.data is not None and column in self.data.columns:
+            fig, ax = plt.subplots(figsize=(8, 5))
+            sns.boxplot(y=self.data[column], ax=ax)
+            ax.set_title(f'Boxplot of {column}')
+            self._save_fig(fig, save_path)
+            if show:
+                plt.show()
+            return fig
+        else:
+            print(f"Column '{column}' not found or no data loaded.")
+            return None
+
+    def plot_scatter(self, x_column, y_column, show=True, save_path=None):
+        if self.data is not None and x_column in self.data.columns and y_column in self.data.columns:
+            fig, ax = plt.subplots(figsize=(8, 5))
+            sns.scatterplot(x=self.data[x_column], y=self.data[y_column], ax=ax)
+            ax.set_xlabel(x_column)
+            ax.set_ylabel(y_column)
+            ax.set_title(f'Scatter plot: {y_column} vs {x_column}')
+            self._save_fig(fig, save_path)
+            if show:
+                plt.show()
+            return fig
+        else:
+            print("Columns not found or no data loaded.")
+            return None
+
     def query_simple(self, column, value):
         """Return rows where column equals value (simple condition)."""
         if self.data is not None and column in self.data.columns:
@@ -79,37 +137,6 @@ class CSVDataProcessor(DataVisualizer):
             print(f"Error loading data: {e}")
             self.data = None
 
-    
-    def plot_violin(self, column):
-        if self.data is not None and column in self.data.columns:
-            plt.figure(figsize=(8, 5))
-            sns.violinplot(y=self.data[column])
-            plt.title(f'Violin plot of {column}')
-            plt.show()
-        else:
-            print(f"Column '{column}' not found or no data loaded.")
-
-    def plot_box(self, column):
-        if self.data is not None and column in self.data.columns:
-            plt.figure(figsize=(8, 5))
-            sns.boxplot(y=self.data[column])
-            plt.title(f'Boxplot of {column}')
-            plt.show()
-        else:
-            print(f"Column '{column}' not found or no data loaded.")
-
-    def plot_scatter(self, x_column, y_column):
-        if self.data is not None and x_column in self.data.columns and y_column in self.data.columns:
-            plt.figure(figsize=(8, 5))
-            sns.scatterplot(x=self.data[x_column], y=self.data[y_column])
-            plt.xlabel(x_column)
-            plt.ylabel(y_column)
-            plt.title(f'Scatter plot: {y_column} vs {x_column}')
-            plt.show()
-        else:
-            print("Columns not found or no data loaded.")
-
-    
     def query_boolean(self, conditions: dict):
         """
         Query multiple conditions.
@@ -129,6 +156,7 @@ class CSVDataProcessor(DataVisualizer):
             else:
                 print(f"Column '{col}' not found, skipping.")
         return df
+
     def log(self, message):
         """Append messages to a log file in Output folder."""
         os.makedirs("Output", exist_ok=True)

@@ -1,3 +1,3 @@
-Unique values in Fuel_Type: ['Petrol' 'Diesel' 'CNG']
-2-permutations: [('Petrol', 'Diesel'), ('Petrol', 'CNG'), ('Diesel', 'Petrol'), ('Diesel', 'CNG'), ('CNG', 'Petrol')]
-2-combinations: [('Petrol', 'Diesel'), ('Petrol', 'CNG'), ('Diesel', 'CNG')]
+Unique values in cut: ['Ideal' 'Premium' 'Good' 'Very Good' 'Fair']
+2-permutations: [('Ideal', 'Premium'), ('Ideal', 'Good'), ('Ideal', 'Very Good'), ('Ideal', 'Fair'), ('Premium', 'Ideal')]
+2-combinations: [('Ideal', 'Premium'), ('Ideal', 'Good'), ('Ideal', 'Very Good'), ('Ideal', 'Fair'), ('Premium', 'Good')]
