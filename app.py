@@ -84,7 +84,7 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-st.title("Dataset Analysis Tool")
+st.title("Visualizer")
 st.write("Upload a CSV or pickle file and select columns for analysis and visualization.")
 
 uploaded = st.file_uploader(
