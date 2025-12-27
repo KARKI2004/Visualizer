@@ -116,6 +116,10 @@ class VectorAnalyzer:
 class ProbabilityAnalyzer(VectorAnalyzer):
     """Child class extending VectorAnalyzer with probability and categorical analysis."""
 
+    def show_summary(self, export=True):
+        """Override parent summary to keep interface consistent for children."""
+        return super().show_summary(export=export)
+
     def _validate_columns(self, *cols):
         if self.data is None:
             print("No data loaded.")

@@ -1,31 +1,33 @@
-# CMPS 3400 ƒ?" Used Car Data Science Project  
+# CMPS 3400 Used Car Data Science Project  
 **Authors:** Samiksha Gnawali & Suyog Karki  
-**Instructor:** Dr. A-mer M. Soysal  
-**Course:** CMPS 3400 ƒ?" Introduction to Data Science  
+**Instructor:** Dr. Omer M. Soysal  
+**Course:** CMPS 3400 Introduction to Data Science  
 
 ---
 
-## dYc Overview
-A Python-based data science project demonstrating:
-- CSV data analysis and visualization  
-- Probability & vector operations using pickle data  
-- Logging, error handling, and class inheritance  
+## Overview
+Visualizer is a Python-based data analysis tool that demonstrates:
+- CSV and pickle analysis with interactive visualization  
+- Probability tables, vector operations, and correlation analysis  
+- Missing-value handling, exports, and logging  
 
-Technologies used: **Pandas**, **Matplotlib**, **Seaborn**, **NumPy**
+Technologies used: **Pandas**, **Matplotlib**, **Seaborn**, **NumPy**, **Streamlit**
 
 ---
 
-## Run Instructions
-```bash
-git clone https://github.com/<your-username>/CMPS_3400_Project.git
-cd CMPS_3400_Project
-pip install pandas matplotlib seaborn numpy
-python main.py
+## Setup
+```
+git clone https://github.com/KARKI2004/CMPS_3400_Project.git
+cd CS340_F_25_Mango
+pip install pandas matplotlib seaborn numpy streamlit
 ```
 
-## Streamlit App
-Run the interactive app to upload a CSV or pickle and select columns for analysis:
-```bash
-pip install streamlit
+## Run (CLI)
+```
+python CS340_Project/main.py
+```
+
+## Run (UI)
+```
 streamlit run app.py
 ```

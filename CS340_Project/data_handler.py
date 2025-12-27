@@ -137,6 +137,13 @@ class CSVDataProcessor(DataVisualizer):
             print(f"Error loading data: {e}")
             self.data = None
 
+    def plot_histogram(self, column, show=True, save_path=None):
+        """Override parent method to add basic logging."""
+        fig = super().plot_histogram(column, show=show, save_path=save_path)
+        if fig is None:
+            self.log(f"Histogram failed for column: {column}")
+        return fig
+
     def query_boolean(self, conditions: dict):
         """
         Query multiple conditions.
