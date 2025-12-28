@@ -42,8 +42,8 @@ st.markdown(
     """
     <style>
     [data-testid="stFileUploader"] {
-        background: #d4edda;
-        border: 1px dashed #5a9a6f;
+        background: transparent;
+        border: 1px dashed #c0c0c0;
         border-radius: 10px;
         padding: 18px 16px;
     }
@@ -53,17 +53,18 @@ st.markdown(
         justify-content: space-between;
     }
     [data-testid="stFileUploader"] button {
-        background: transparent;
+        background: #2e7d32;
         border: none;
-        color: #1f5f32;
+        color: #ffffff;
         font-weight: 700;
         font-size: 18px;
-        padding: 0;
+        padding: 8px 12px;
+        border-radius: 6px;
         flex: 1;
         text-align: center;
     }
     [data-testid="stFileUploader"] small {
-        color: #1f5f32;
+        color: #6f6f6f;
     }
     [data-testid="stSidebar"] .stVerticalBlock {
         display: flex;
