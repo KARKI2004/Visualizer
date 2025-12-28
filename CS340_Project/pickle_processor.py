@@ -1,16 +1,3 @@
-#Version: v0.1
-#Date Last Updated: 12-04-2025
-
-'''
-Version: <v0.1>
-Description:
-< configuration settings for file paths, figure size, and plot style>
-Authors:
-<Samiksha Gnawali, Suyog Karki>
-Date Created : <11/30/2025>
-'''
-
-
 import pandas as pd
 import pickle
 import os

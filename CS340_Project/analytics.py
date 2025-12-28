@@ -1,15 +1,3 @@
-#Version: v0.1
-#Date Last Updated: 12-04-2025
-
-'''
-Version: <v0.1>
-Description:
-<Handles computation, probability, and vector analysis using pickle data>
-Authors:
-<Samiksha Gnawali, Suyog Karki>
-Date Created : <11/30/2025>
-'''
-
 #%% IMPORTS
 import pandas as pd
 import numpy as np

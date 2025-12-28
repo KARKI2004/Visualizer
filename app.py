@@ -42,8 +42,8 @@ st.markdown(
     """
     <style>
     [data-testid="stFileUploader"] {
-        background: #f8d7da;
-        border: 1px dashed #c94f5e;
+        background: #d4edda;
+        border: 1px dashed #5a9a6f;
         border-radius: 10px;
         padding: 18px 16px;
     }
@@ -55,7 +55,7 @@ st.markdown(
     [data-testid="stFileUploader"] button {
         background: transparent;
         border: none;
-        color: #6b1b1b;
+        color: #1f5f32;
         font-weight: 700;
         font-size: 18px;
         padding: 0;
@@ -63,7 +63,7 @@ st.markdown(
         text-align: center;
     }
     [data-testid="stFileUploader"] small {
-        color: #6b1b1b;
+        color: #1f5f32;
     }
     [data-testid="stSidebar"] .stVerticalBlock {
         display: flex;
@@ -95,6 +95,9 @@ uploaded = st.file_uploader(
 
 if not uploaded:
     st.info("Upload a CSV or pickle file to begin.")
+    st.stop()
+if hasattr(uploaded, "size") and uploaded.size > 50 * 1024 * 1024:
+    st.error("File too large. Please upload a file under 50 MB.")
     st.stop()
 
 data = load_data(uploaded)
@@ -155,11 +158,7 @@ st.success(f"Loaded {df_clean.shape[0]} rows and {df_clean.shape[1]} columns.")
 st.dataframe(df_clean.head(20))
 
 numeric_cols = df_clean.select_dtypes(include="number").columns.tolist()
-categorical_cols = [c for c in df_clean.columns if c not in numeric_cols]
 all_cols = df_clean.columns.tolist()
-
-output_dir = os.path.join(ROOT_DIR, "Output")
-save_outputs = st.sidebar.checkbox("Save outputs to Output/", value=True)
 
 viz = DataVisualizer()
 viz.set_data(df_clean)
@@ -199,8 +198,6 @@ else:
     if show_hist:
         hist_col = st.selectbox("Histogram column", numeric_cols, key="hist_col")
         save_path = None
-        if save_outputs:
-            save_path = os.path.join(output_dir, f"histogram_{safe_name(hist_col)}.png")
         fig = viz.plot_histogram(hist_col, show=False, save_path=save_path)
         if fig:
             st.pyplot(fig)
@@ -216,8 +213,6 @@ else:
         x_col = st.selectbox("Line X column", numeric_cols, key="line_x")
         y_col = st.selectbox("Line Y column", numeric_cols, key="line_y")
         save_path = None
-        if save_outputs:
-            save_path = os.path.join(output_dir, f"line_{safe_name(x_col)}_{safe_name(y_col)}.png")
         fig = viz.plot_line(x_col, y_col, show=False, save_path=save_path)
         if fig:
             st.pyplot(fig)
@@ -232,8 +227,6 @@ else:
     if show_violin:
         violin_col = st.selectbox("Violin column", numeric_cols, key="violin_col")
         save_path = None
-        if save_outputs:
-            save_path = os.path.join(output_dir, f"violin_{safe_name(violin_col)}.png")
         fig = viz.plot_violin(violin_col, show=False, save_path=save_path)
         if fig:
             st.pyplot(fig)
@@ -248,8 +241,6 @@ else:
     if show_box:
         box_col = st.selectbox("Box column", numeric_cols, key="box_col")
         save_path = None
-        if save_outputs:
-            save_path = os.path.join(output_dir, f"box_{safe_name(box_col)}.png")
         fig = viz.plot_box(box_col, show=False, save_path=save_path)
         if fig:
             st.pyplot(fig)
@@ -265,8 +256,6 @@ else:
         scatter_x = st.selectbox("Scatter X column", numeric_cols, key="scatter_x")
         scatter_y = st.selectbox("Scatter Y column", numeric_cols, key="scatter_y")
         save_path = None
-        if save_outputs:
-            save_path = os.path.join(output_dir, f"scatter_{safe_name(scatter_x)}_{safe_name(scatter_y)}.png")
         fig = viz.plot_scatter(scatter_x, scatter_y, show=False, save_path=save_path)
         if fig:
             st.pyplot(fig)
@@ -289,7 +278,7 @@ else:
 
     show_joint = st.checkbox("Show joint counts")
     if show_joint:
-        joint = analyzer.joint_counts(col1, col2, export=save_outputs)
+        joint = analyzer.joint_counts(col1, col2, export=False)
         if joint is not None:
             st.dataframe(joint)
             st.download_button(
@@ -301,7 +290,7 @@ else:
 
     show_joint_prob = st.checkbox("Show joint probability")
     if show_joint_prob:
-        joint_prob = analyzer.joint_probability(col1, col2, export=save_outputs)
+        joint_prob = analyzer.joint_probability(col1, col2, export=False)
         if joint_prob is not None:
             st.dataframe(joint_prob)
             st.download_button(
@@ -313,7 +302,7 @@ else:
 
     show_cond = st.checkbox("Show conditional probability")
     if show_cond:
-        cond = analyzer.conditional_probability(col1, col2, export=save_outputs)
+        cond = analyzer.conditional_probability(col1, col2, export=False)
         if cond is not None:
             st.dataframe(cond)
             st.download_button(
@@ -338,7 +327,7 @@ else:
     if show_vec:
         vec_a = df_clean[vec_col_a].values[:vec_len]
         vec_b = df_clean[vec_col_b].values[:vec_len]
-        vec_results = analyzer.vector_operations(vec_a, vec_b, export=save_outputs)
+        vec_results = analyzer.vector_operations(vec_a, vec_b, export=False)
         st.dataframe(vec_results)
         st.download_button(
             label="Download vector results CSV",
@@ -357,7 +346,7 @@ else:
     cat_col = st.selectbox("Column", all_cols, key="cat_col")
     show_cat = st.checkbox("Run categorical analysis")
     if show_cat:
-        cat_results = analyzer.categorical_analysis(cat_col, export=save_outputs)
+        cat_results = analyzer.categorical_analysis(cat_col, export=False)
         if cat_results:
             st.write("Unique values:", cat_results["unique_values"])
             st.write("2-permutations (first 5):", cat_results["permutations_2"])

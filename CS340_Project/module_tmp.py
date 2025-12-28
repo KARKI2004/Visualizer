@@ -1,15 +1,3 @@
-#Version: v0.1
-#Date Last Updated: 12-04-2025
-
-'''
-Version: <v0.1>
-Description:
-<Temporary module for required language features and utilities>
-Authors:
-<Samiksha Gnawali, Suyog Karki>
-Date Created : <12/04/2025>
-'''
-
 import os
 import numpy as np
 import pandas as pd

@@ -1,15 +1,3 @@
-#Version: v0.1
-#Date Last Updated: 12-04-2025
-
-'''
-Version: <v0.1>
-Description:
-< handles CSV data reading, processing, and visualizations>
-Authors:
-<Samiksha Gnawali, Suyog Karki>
-Date Created : <11/08/2025>
-'''
-
 #%% IMPORTS
 import pandas as pd
 import matplotlib.pyplot as plt

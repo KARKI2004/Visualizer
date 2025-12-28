@@ -1,15 +1,3 @@
-# Version: v0.3
-# Date Last Updated: 12-04-2025
-
-'''
-Version: <v0.3>
-Description:
-<Main controller that executes data handling, visualization, and analytics modules>
-Authors:
-<Samiksha Gnawali, Suyog Karki>
-Date Created : <11/08/2025>
-'''
-
 module_name_gl = 'main'
 
 from config import show_config, CONFIG

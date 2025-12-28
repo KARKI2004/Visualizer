@@ -9,7 +9,7 @@
 Visualizer is a Python-based data analysis tool that demonstrates:
 - CSV and pickle analysis with interactive visualization  
 - Probability tables, vector operations, and correlation analysis  
-- Missing-value handling, exports, and logging  
+- Missing-value handling, downloads, and logging  
 
 Technologies used: **Pandas**, **Matplotlib**, **Seaborn**, **NumPy**, **Streamlit**
 
@@ -30,4 +30,18 @@ python CS340_Project/main.py
 ## Run (UI)
 ```
 streamlit run app.py
+```
+
+## Outputs
+- CLI run writes analysis outputs and plots to `Output/`
+- UI run provides download buttons and does not write to disk
+
+## Deploy (Google Cloud Run)
+1) Build and push the container:
+```
+gcloud builds submit --tag gcr.io/<PROJECT_ID>/visualizer
+```
+2) Deploy:
+```
+gcloud run deploy visualizer --image gcr.io/<PROJECT_ID>/visualizer --platform managed --region <REGION> --allow-unauthenticated
 ```
