@@ -1,4 +1,4 @@
-# CMPS 3400 Used Car Data Science Project  
+# Visualizer
 **Authors:** Samiksha Gnawali & Suyog Karki  
 **Instructor:** Dr. Omer M. Soysal  
 **Course:** CMPS 3400 Introduction to Data Science  
@@ -36,12 +36,5 @@ streamlit run app.py
 - CLI run writes analysis outputs and plots to `Output/`
 - UI run provides download buttons and does not write to disk
 
-## Deploy (Google Cloud Run)
-1) Build and push the container:
-```
-gcloud builds submit --tag gcr.io/<PROJECT_ID>/visualizer
-```
-2) Deploy:
-```
-gcloud run deploy visualizer --image gcr.io/<PROJECT_ID>/visualizer --platform managed --region <REGION> --allow-unauthenticated
-```
+##Links  
+https://cmps3400project-j6nnrxvmd6rqskkgp5gejm.streamlit.app/
