@@ -37,6 +37,6 @@ streamlit run app.py
 - UI run provides download buttons and does not write to disk
 
 ## Links  
-https://cmps3400project-j6nnrxvmd6rqskkgp5gejm.streamlit.app/
+https://visualizer-data-analysis.streamlit.app/
 
 
