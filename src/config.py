@@ -1,17 +1,17 @@
-#%% IMPORTS
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pathlib import Path
 
-import os
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+APP_ROOT = Path(__file__).resolve().parents[1]
+BASE_DIR = Path(__file__).resolve().parent
 
 CONFIG = {
-    "BASE_DIR": BASE_DIR,
-    "DATA_FILE": os.path.join(BASE_DIR, "Input", "car_data.pkl"),
+    "APP_ROOT": str(APP_ROOT),
+    "BASE_DIR": str(BASE_DIR),
+    "DATA_FILE": str(APP_ROOT / "data" / "demo" / "car_data.pkl"),
     "PLOT_STYLE": "darkgrid",
     "FIG_SIZE": (10, 6),
-    "TARGET_COLUMN": "Selling_Price"
+    "TARGET_COLUMN": "Selling_Price",
 }
 
 
@@ -22,5 +22,6 @@ def show_config():
         print(f"{key}: {value}")
 
 
-sns.set_style(CONFIG["PLOT_STYLE"])  
+sns.set_style(CONFIG["PLOT_STYLE"])
 plt.rcParams["figure.figsize"] = CONFIG["FIG_SIZE"]
+

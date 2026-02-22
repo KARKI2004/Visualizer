@@ -17,14 +17,14 @@ Technologies used: **Pandas**, **Matplotlib**, **Seaborn**, **NumPy**, **Streaml
 
 ## Setup
 ```
-git clone https://github.com/KARKI2004/CMPS_3400_Project.git
-cd CS340_F_25_Mango
-pip install pandas matplotlib seaborn numpy streamlit
+git clone https://github.com/KARKI2004/Visualizer
+cd Visualizer
+pip install -r requirements.txt
 ```
 
 ## Run (CLI)
 ```
-python CS340_Project/main.py
+python -m src.cli_runner
 ```
 
 ## Run (UI)
@@ -36,5 +36,7 @@ streamlit run app.py
 - CLI run writes analysis outputs and plots to `Output/`
 - UI run provides download buttons and does not write to disk
 
-##Links  
+## Links  
 https://cmps3400project-j6nnrxvmd6rqskkgp5gejm.streamlit.app/
+
+

@@ -1,10 +1,13 @@
+# Legacy CLI pipeline for class project.
+# Streamlit app uses app.py and st.file_uploader instead.
+
 module_name_gl = 'main'
 
-from config import show_config, CONFIG
-from data_handler import CSVDataProcessor
-from analytics import ProbabilityAnalyzer
-from pickle_processor import PickleProcessor
-from module_tmp import (
+from src.config import show_config, CONFIG
+from src.data_handler import CSVDataProcessor
+from src.analytics import ProbabilityAnalyzer
+from src.pickle_processor import PickleProcessor
+from src.module_tmp import (
     DEFAULT_SHAPE,
     make_numpy_dataframe,
     export_dataframe_pickle,
@@ -143,3 +146,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

@@ -5,7 +5,7 @@ import pickle
 import math
 import os
 from itertools import permutations, combinations
-from config import CONFIG
+from src.config import CONFIG
 
 
 # PARENT CLASS: VectorAnalyzer
@@ -181,3 +181,4 @@ class ProbabilityAnalyzer(VectorAnalyzer):
             "permutations_2": perms,
             "combinations_2": combs
         }
+
